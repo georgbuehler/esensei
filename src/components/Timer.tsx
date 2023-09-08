@@ -15,7 +15,7 @@ const Timer = ({ startingSeconds, startImmediately, timesUp }: TimerProps) => {
     const timer = setInterval(() => {
       if (clocksTicking) {
         setTimeRemaining((prevSeconds) => {
-          if (prevSeconds <= 1) {
+          if (prevSeconds == 1) {
             clearInterval(timer);
             timesUp();
             setClocksTicking(false);
@@ -41,11 +41,26 @@ const Timer = ({ startingSeconds, startImmediately, timesUp }: TimerProps) => {
     <>
       <Heading>{convertToMinSec(timeRemaining)}</Heading>
       <ButtonGroup spacing="3">
-        <Button colorScheme="green" onClick={() => setClocksTicking(true)}>
+        <Button
+          colorScheme="green"
+          onClick={() => setClocksTicking(true)}
+          isDisabled={clocksTicking}
+        >
           Start
         </Button>
-        <Button colorScheme="red" onClick={() => setClocksTicking(false)}>
+        <Button
+          colorScheme="red"
+          onClick={() => setClocksTicking(false)}
+          isDisabled={!clocksTicking}
+        >
           Stop
+        </Button>
+        <Button
+          colorScheme="blue"
+          onClick={() => setTimeRemaining(startingSeconds)}
+          isDisabled={clocksTicking}
+        >
+          Reset
         </Button>
       </ButtonGroup>
     </>
