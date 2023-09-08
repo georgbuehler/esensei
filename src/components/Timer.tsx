@@ -27,7 +27,7 @@ const Timer = ({ startingSeconds, startImmediately, timesUp }: TimerProps) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [timeRemaining, clocksTicking]);
 
   const convertToMinSec = (seconds: number): string => {
     if (seconds < 60) return `0:${seconds.toString().padStart(2, "0")}`;
