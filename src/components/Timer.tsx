@@ -12,21 +12,22 @@ const Timer = ({ startingSeconds, startImmediately, timesUp }: TimerProps) => {
   const [clocksTicking, setClocksTicking] = useState(startImmediately);
 
   useEffect(() => {
-    const timer = setInterval(tick, 1000);
+    const timer = setInterval(() => {
+      if (clocksTicking) {
+        setTimeRemaining((prevSeconds) => {
+          if (prevSeconds <= 1) {
+            clearInterval(timer);
+            timesUp();
+            setClocksTicking(false);
+          }
+
+          return prevSeconds - 1;
+        });
+      }
+    }, 1000);
+
     return () => clearInterval(timer);
   }, []);
-
-  const tick = () => {
-    if (clocksTicking) {
-      setTimeRemaining((prevSeconds) => {
-        return prevSeconds - 1;
-      });
-      if (timeRemaining <= 0) {
-        timesUp();
-        setClocksTicking(false);
-      }
-    }
-  };
 
   const convertToMinSec = (seconds: number): string => {
     if (seconds < 60) return `0:${seconds.toString().padStart(2, "0")}`;

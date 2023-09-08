@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <Timer
-        startingSeconds={90}
+        startingSeconds={20}
         startImmediately={true}
         timesUp={() => console.log("Time's up!")}
       />
