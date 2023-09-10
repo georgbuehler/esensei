@@ -1,23 +1,36 @@
 import "./App.css";
-import Technique from "./components/Technique";
+import TestTechnique from "./components/TestTechnique";
 import Timer from "./components/Timer";
+import ExamControls from "./components/ExamControls";
+import { useState } from "react";
+import { Technique } from "./assets/Techniques";
+import techniques from "./assets/Techniques";
+import Exam from "./components/Exam";
 
 function App() {
+  const [testInProgress, setTestInProgress] = useState(false);
+  const [testLevel, setTestLevel] = useState<number | undefined>(undefined);
+  const [includeLower, setIncludeLower] = useState(false);
+  const [currentTechnique, setCurrentTechnique] = useState(0);
+  const [testTechniques, setTestTechniques] = useState<Technique[]>([]);
+
   return (
     <>
-      <Technique
-        modeName="Standing"
-        modeAudioURL=""
-        attackName="Shomenuchi"
-        attackAudioURL="/audio/Shomenuchi.mp3"
-        defenseName="Shihonage"
-        defenseAudioURL="/audio/Shihonage.mp3"
+      <ExamControls
+        currentLevel={testLevel}
+        currentIncludeLower={includeLower}
+        updateLevel={setTestLevel}
+        updateIncludeLower={setIncludeLower}
+        testInProgress={testInProgress}
+        startTest={() => setTestInProgress(true)}
+        stopTest={() => setTestInProgress(false)}
       />
-      <Timer
-        startingSeconds={20}
-        startImmediately={true}
-        timesUp={() => console.log("Time's up!")}
-      />
+      {testInProgress && (
+        <Exam
+          technique={techniques[0]}
+          timesUp={() => console.log("Times up!")}
+        />
+      )}
     </>
   );
 }
