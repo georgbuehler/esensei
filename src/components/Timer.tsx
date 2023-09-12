@@ -62,6 +62,9 @@ const Timer = ({ startingSeconds, startImmediately, timesUp }: TimerProps) => {
         >
           Reset
         </Button>
+        <Button colorScheme="teal" onClick={() => timesUp()}>
+          Next
+        </Button>
       </ButtonGroup>
     </>
   );
