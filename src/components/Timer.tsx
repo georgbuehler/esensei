@@ -17,8 +17,11 @@ const Timer = ({ startingSeconds, startImmediately, timesUp }: TimerProps) => {
         setTimeRemaining((prevSeconds) => {
           if (prevSeconds == 1) {
             clearInterval(timer);
-            timesUp();
-            setClocksTicking(false);
+            //setClocksTicking(false);
+            setTimeout(() => {
+              setTimeRemaining(startingSeconds);
+              timesUp();
+            }, 0);
           }
 
           return prevSeconds - 1;
