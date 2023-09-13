@@ -37,7 +37,7 @@ const ExamControls = ({
       >
         {levels.map((level) => (
           <option key={level.Id} value={level.Id}>
-            {level.Name}
+            {level.EnglishTranslation}
           </option>
         ))}
       </Select>
