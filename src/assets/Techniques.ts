@@ -10,6 +10,24 @@ export interface Technique {
   DefenseAudioURL: string;
 }
 
+export const getTechniques = (
+  level: number = 5,
+  includeLower: boolean = true
+): Technique[] => {
+  let filteredTechniques: Technique[] = [];
+  if (includeLower) {
+    filteredTechniques = techniques.filter(
+      (technique: Technique) => technique.RankNumber >= level
+    );
+  } else {
+    filteredTechniques = techniques.filter(
+      (technique: Technique) => technique.RankNumber == level
+    );
+  }
+  console.log(filteredTechniques);
+  return filteredTechniques;
+};
+
 const techniques: Technique[] = [
   {
     RankNumber: 3,
