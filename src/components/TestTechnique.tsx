@@ -1,5 +1,5 @@
 import { Heading, Stack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Howl } from "howler";
 
 interface TechniqueProps {
@@ -19,27 +19,23 @@ const TestTechnique = ({
   defenseName,
   defenseAudioURL,
 }: TechniqueProps) => {
-  const [currentTrack, setCurrentTrack] = useState(0);
-  let tracks = [attackAudioURL, defenseAudioURL];
-  if (modeAudioURL != "") tracks.unshift(modeAudioURL);
+  const DefenseSound = new Howl({
+    src: defenseAudioURL,
+  });
+
+  const AttackSound = new Howl({
+    src: attackAudioURL,
+    onend: () => DefenseSound.play(),
+  });
+
+  const ModeSound = new Howl({
+    src: modeAudioURL,
+    onend: () => AttackSound.play(),
+  });
 
   useEffect(() => {
-    if (currentTrack != 0) setCurrentTrack(0);
-  }, [tracks]);
-
-  useEffect(() => {
-    if (currentTrack < tracks.length) {
-      const sound = new Howl({
-        src: [tracks[currentTrack]],
-        onend: () => {
-          // Once the track ends, play the next one
-          setCurrentTrack((prevTrack) => prevTrack + 1);
-        },
-      });
-
-      sound.play();
-    }
-  }, [currentTrack]);
+    ModeSound.play();
+  }, [DefenseSound, AttackSound, ModeSound]);
 
   return (
     <Stack spacing="2" margin="4">

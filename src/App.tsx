@@ -22,9 +22,10 @@ function App() {
 
   const nextTechnique = () => {
     setCurrentTechnique((previous) => {
-      if (previous == testTechniques.length + 1) {
+      if (previous == testTechniques.length - 1) {
         setTestComplete(true);
         setTestInProgress(false);
+        return previous;
       }
       return previous + 1;
     });
@@ -48,7 +49,7 @@ function App() {
         />
       )}
       {testComplete && (
-        <ExamComplete clearMessage={() => setTestComplete(true)} />
+        <ExamComplete clearMessage={() => setTestComplete(false)} />
       )}
     </>
   );
