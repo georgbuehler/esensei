@@ -24,6 +24,10 @@ const TestTechnique = ({
   if (modeAudioURL != "") tracks.unshift(modeAudioURL);
 
   useEffect(() => {
+    if (currentTrack != 0) setCurrentTrack(0);
+  }, [tracks]);
+
+  useEffect(() => {
     if (currentTrack < tracks.length) {
       const sound = new Howl({
         src: [tracks[currentTrack]],
@@ -35,7 +39,7 @@ const TestTechnique = ({
 
       sound.play();
     }
-  }, [currentTrack, tracks]);
+  }, [currentTrack]);
 
   return (
     <Stack spacing="2" margin="4">

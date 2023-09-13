@@ -5,7 +5,7 @@ export interface ISettings {
 
 const Settings: ISettings = {
   audioPath: "/audio/",
-  defaultSeconds: 60,
+  defaultSeconds: 15,
 };
 
 export default Settings;
