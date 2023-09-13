@@ -10,19 +10,26 @@ export interface Technique {
   DefenseAudioURL: string;
 }
 
+const sortByPriority = (a: Technique, b: Technique): number => {
+  // Randomize results within priority
+  if (a.Priority === b.Priority) return Math.random() - 0.5;
+  // Otherwise sort by Priority
+  return a.Priority - b.Priority;
+};
+
 export const getTechniques = (
   level: number = 5,
   includeLower: boolean = true
 ): Technique[] => {
   let filteredTechniques: Technique[] = [];
   if (includeLower) {
-    filteredTechniques = techniques.filter(
-      (technique: Technique) => technique.RankNumber >= level
-    );
+    filteredTechniques = techniques
+      .filter((technique: Technique) => technique.RankNumber >= level)
+      .sort(sortByPriority);
   } else {
-    filteredTechniques = techniques.filter(
-      (technique: Technique) => technique.RankNumber == level
-    );
+    filteredTechniques = techniques
+      .filter((technique: Technique) => technique.RankNumber == level)
+      .sort(sortByPriority);
   }
   console.log(filteredTechniques);
   return filteredTechniques;
