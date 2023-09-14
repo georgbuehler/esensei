@@ -38,10 +38,6 @@ function App() {
     <>
       {!testInProgress && (
         <>
-          <Heading>eSensei</Heading>
-          <Heading size="md" m={4}>
-            Aikido Test Simulator
-          </Heading>
           <ExamControls
             currentLevel={testLevel}
             currentIncludeLower={includeLower}

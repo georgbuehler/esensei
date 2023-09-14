@@ -12,6 +12,7 @@ import {
   NumberDecrementStepper,
   FormControl,
   FormLabel,
+  Heading,
 } from "@chakra-ui/react";
 import levels from "../assets/Levels";
 
@@ -40,6 +41,10 @@ const ExamControls = ({
 }: ExamControlProps) => {
   return (
     <Stack spacing={3} justify="center">
+      <Heading>eSensei</Heading>
+      <Heading size="md" m={2}>
+        Aikido Test Simulator
+      </Heading>
       <Select
         placeholder="Select Test Level"
         onChange={(event) => updateLevel(parseInt(event.target.value))}
