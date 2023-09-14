@@ -59,7 +59,7 @@ const ExamControls = ({
       >
         Include Lower Level Techniques
       </Checkbox>
-      <FormControl>
+      <FormControl isDisabled={testInProgress}>
         <FormLabel>Seconds per Technique</FormLabel>
         <NumberInput
           defaultValue={currentTimerInterval}
