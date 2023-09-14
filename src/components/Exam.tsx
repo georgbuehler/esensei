@@ -17,6 +17,7 @@ const Exam = ({ technique, timesUp }: ExamProps) => {
     Defense,
     DefenseAudioURL,
   } = technique;
+
   return (
     <>
       <TestTechnique

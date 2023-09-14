@@ -1,5 +1,5 @@
 import { Heading, Stack } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Howl } from "howler";
 
 interface TechniqueProps {
@@ -19,6 +19,8 @@ const TestTechnique = ({
   defenseName,
   defenseAudioURL,
 }: TechniqueProps) => {
+  const currentMode = useRef("");
+
   const DefenseSound = new Howl({
     src: defenseAudioURL,
   });
@@ -34,7 +36,11 @@ const TestTechnique = ({
   });
 
   useEffect(() => {
-    ModeSound.play();
+    console.log("Effect fired!");
+    if (modeName != currentMode.current) {
+      ModeSound.play();
+      currentMode.current = modeName;
+    } else AttackSound.play();
   }, [DefenseSound, AttackSound, ModeSound]);
 
   return (
