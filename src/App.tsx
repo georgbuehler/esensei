@@ -6,6 +6,7 @@ import { getTechniques } from "./assets/Techniques";
 import Exam from "./components/Exam";
 import ExamComplete from "./components/ExamComplete";
 import Settings from "./assets/Settings";
+import { Heading } from "@chakra-ui/react";
 
 function App() {
   const [testInProgress, setTestInProgress] = useState(false);
@@ -35,19 +36,27 @@ function App() {
 
   return (
     <>
-      <ExamControls
-        currentLevel={testLevel}
-        currentIncludeLower={includeLower}
-        currentTimerInterval={timerInterval}
-        updateLevel={setTestLevel}
-        updateIncludeLower={setIncludeLower}
-        updateTimerInterval={(_, seconds) => {
-          setTimerInterval(seconds);
-        }}
-        testInProgress={testInProgress}
-        startTest={startTest}
-        stopTest={() => setTestInProgress(false)}
-      />
+      {!testInProgress && (
+        <>
+          <Heading>eSensei</Heading>
+          <Heading size="md" m={4}>
+            Aikido Test Simulator
+          </Heading>
+          <ExamControls
+            currentLevel={testLevel}
+            currentIncludeLower={includeLower}
+            currentTimerInterval={timerInterval}
+            updateLevel={setTestLevel}
+            updateIncludeLower={setIncludeLower}
+            updateTimerInterval={(_, seconds) => {
+              setTimerInterval(seconds);
+            }}
+            testInProgress={testInProgress}
+            startTest={startTest}
+            stopTest={() => setTestInProgress(false)}
+          />
+        </>
+      )}
       {testInProgress && (
         <Exam
           technique={testTechniques[currentTechnique]}
@@ -58,6 +67,9 @@ function App() {
       {testComplete && (
         <ExamComplete clearMessage={() => setTestComplete(false)} />
       )}
+      <Heading size="xs" m="4">
+        Credits
+      </Heading>
     </>
   );
 }
