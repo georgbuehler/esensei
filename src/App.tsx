@@ -5,6 +5,7 @@ import { Technique } from "./assets/Techniques";
 import { getTechniques } from "./assets/Techniques";
 import Exam from "./components/Exam";
 import ExamComplete from "./components/ExamComplete";
+import Settings from "./assets/Settings";
 
 function App() {
   const [testInProgress, setTestInProgress] = useState(false);
@@ -13,6 +14,7 @@ function App() {
   const [currentTechnique, setCurrentTechnique] = useState(0);
   const [testTechniques, setTestTechniques] = useState<Technique[]>([]);
   const [testComplete, setTestComplete] = useState(false);
+  const [timerInterval, setTimerInterval] = useState(Settings.defaultSeconds);
 
   const startTest = () => {
     // Get filtered list of techniques
@@ -36,8 +38,12 @@ function App() {
       <ExamControls
         currentLevel={testLevel}
         currentIncludeLower={includeLower}
+        currentTimerInterval={timerInterval}
         updateLevel={setTestLevel}
         updateIncludeLower={setIncludeLower}
+        updateTimerInterval={(_, seconds) => {
+          setTimerInterval(seconds);
+        }}
         testInProgress={testInProgress}
         startTest={startTest}
         stopTest={() => setTestInProgress(false)}
@@ -45,6 +51,7 @@ function App() {
       {testInProgress && (
         <Exam
           technique={testTechniques[currentTechnique]}
+          timerInterval={timerInterval}
           timesUp={nextTechnique}
         />
       )}

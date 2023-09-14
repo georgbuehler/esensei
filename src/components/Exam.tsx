@@ -5,10 +5,11 @@ import Settings from "../assets/Settings";
 
 interface ExamProps {
   technique: Technique;
+  timerInterval: number;
   timesUp: () => void;
 }
 
-const Exam = ({ technique, timesUp }: ExamProps) => {
+const Exam = ({ technique, timerInterval, timesUp }: ExamProps) => {
   const {
     Mode,
     ModeAudioURL,
@@ -29,7 +30,7 @@ const Exam = ({ technique, timesUp }: ExamProps) => {
         defenseAudioURL={Settings.audioPath + DefenseAudioURL}
       />
       <Timer
-        startingSeconds={Settings.defaultSeconds}
+        startingSeconds={timerInterval}
         startImmediately={true}
         timesUp={timesUp}
       />

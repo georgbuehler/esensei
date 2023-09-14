@@ -5,14 +5,23 @@ import {
   Button,
   Stack,
   Flex,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  FormControl,
+  FormLabel,
 } from "@chakra-ui/react";
 import levels from "../assets/Levels";
 
 interface ExamControlProps {
   currentLevel: number | undefined;
   currentIncludeLower: boolean;
+  currentTimerInterval: number;
   updateLevel: (level: number) => void;
   updateIncludeLower: (include: boolean) => void;
+  updateTimerInterval: (value: string, seconds: number) => void;
   startTest: () => void;
   stopTest: () => void;
   testInProgress: boolean;
@@ -21,8 +30,10 @@ interface ExamControlProps {
 const ExamControls = ({
   currentLevel,
   currentIncludeLower,
+  currentTimerInterval,
   updateLevel,
   updateIncludeLower,
+  updateTimerInterval,
   startTest,
   stopTest,
   testInProgress,
@@ -48,6 +59,22 @@ const ExamControls = ({
       >
         Include Lower Level Techniques
       </Checkbox>
+      <FormControl>
+        <FormLabel>Seconds per Technique</FormLabel>
+        <NumberInput
+          defaultValue={currentTimerInterval}
+          min={15}
+          max={300}
+          step={5}
+          onChange={updateTimerInterval}
+        >
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+      </FormControl>
       <Flex justifyContent="center">
         <ButtonGroup alignItems={"center"}>
           <Button

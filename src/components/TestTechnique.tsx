@@ -1,5 +1,5 @@
 import { Heading, Stack } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Howl } from "howler";
 
 interface TechniqueProps {
