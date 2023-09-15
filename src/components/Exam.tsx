@@ -7,9 +7,12 @@ interface ExamProps {
   technique: Technique;
   timerInterval: number;
   timesUp: () => void;
+  isVisible: boolean;
 }
 
-const Exam = ({ technique, timerInterval, timesUp }: ExamProps) => {
+const Exam = ({ technique, timerInterval, timesUp, isVisible }: ExamProps) => {
+  if (!isVisible) return null;
+
   const {
     Mode,
     ModeAudioURL,

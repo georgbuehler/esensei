@@ -50,13 +50,12 @@ function App() {
         stopTest={() => setTestInProgress(false)}
       />
 
-      {testInProgress && !testComplete && (
-        <Exam
-          technique={testTechniques[currentTechnique]}
-          timerInterval={timerInterval}
-          timesUp={nextTechnique}
-        />
-      )}
+      <Exam
+        technique={testTechniques[currentTechnique]}
+        timerInterval={timerInterval}
+        timesUp={nextTechnique}
+        isVisible={testInProgress && !testComplete}
+      />
 
       <ExamComplete
         isVisible={testComplete}
