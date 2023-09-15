@@ -39,6 +39,8 @@ const ExamControls = ({
   stopTest,
   testInProgress,
 }: ExamControlProps) => {
+  if (testInProgress) return null;
+
   return (
     <Stack spacing={3} justify="center">
       <Heading>eSensei</Heading>

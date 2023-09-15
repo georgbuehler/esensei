@@ -2,9 +2,12 @@ import { Heading, Stack, Button } from "@chakra-ui/react";
 
 interface ExamCompleteProps {
   clearMessage: () => void;
+  isVisible: boolean;
 }
 
-const ExamComplete = ({ clearMessage }: ExamCompleteProps) => {
+const ExamComplete = ({ clearMessage, isVisible }: ExamCompleteProps) => {
+  if (!isVisible) return null;
+
   return (
     <Stack>
       <Heading>Exam Complete!</Heading>
