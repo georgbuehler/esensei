@@ -1,6 +1,14 @@
-import { Button, ButtonGroup, Heading } from "@chakra-ui/react";
+import { Button, ButtonGroup, Heading, IconButton } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 import ExamContext from "../contexts/examContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlay,
+  faPause,
+  faStop,
+  faForward,
+  faRedo,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface TimerProps {
   startingSeconds: number;
@@ -46,42 +54,43 @@ const Timer = ({ startingSeconds, startImmediately, timesUp }: TimerProps) => {
     <>
       <Heading>{convertToMinSec(timeRemaining)}</Heading>
       <ButtonGroup spacing="3">
-        <Button
+        <IconButton
           colorScheme="green"
+          aria-label="Continue"
+          icon={<FontAwesomeIcon icon={faPlay} />}
           onClick={() => setClocksTicking(true)}
           isDisabled={clocksTicking}
-        >
-          Start
-        </Button>
-        <Button
+        />
+        <IconButton
+          aria-label="Pause"
           colorScheme="red"
           onClick={() => setClocksTicking(false)}
           isDisabled={!clocksTicking}
-        >
-          Pause
-        </Button>
-        <Button
+          icon={<FontAwesomeIcon icon={faPause} />}
+        />
+        <IconButton
+          aria-label="Stop"
           colorScheme="red"
           onClick={() => context.setTestInProgress(false)}
-        >
-          Stop
-        </Button>
-        <Button
+          icon={<FontAwesomeIcon icon={faStop} />}
+        />
+        <IconButton
+          aria-label="Restart"
           colorScheme="blue"
           onClick={() => setTimeRemaining(startingSeconds)}
           isDisabled={clocksTicking}
-        >
-          Reset
-        </Button>
-        <Button
+          icon={<FontAwesomeIcon icon={faRedo} transform="flip-y" />}
+        />
+
+        <IconButton
           colorScheme="teal"
           onClick={() => {
             setTimeRemaining(startingSeconds);
             timesUp();
           }}
-        >
-          Next
-        </Button>
+          aria-label="Next"
+          icon={<FontAwesomeIcon icon={faForward} />}
+        />
       </ButtonGroup>
     </>
   );

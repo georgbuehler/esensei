@@ -91,13 +91,6 @@ const ExamControls = ({
           >
             Start Test
           </Button>
-          <Button
-            onClick={stopTest}
-            isDisabled={!testInProgress}
-            colorScheme="red"
-          >
-            Stop Test
-          </Button>
         </ButtonGroup>
       </Flex>
     </Stack>
