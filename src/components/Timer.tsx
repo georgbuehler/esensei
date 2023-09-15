@@ -1,5 +1,6 @@
 import { Button, ButtonGroup, Heading } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import ExamContext from "../contexts/examContext";
 
 interface TimerProps {
   startingSeconds: number;
@@ -10,6 +11,8 @@ interface TimerProps {
 const Timer = ({ startingSeconds, startImmediately, timesUp }: TimerProps) => {
   const [timeRemaining, setTimeRemaining] = useState(startingSeconds);
   const [clocksTicking, setClocksTicking] = useState(startImmediately);
+
+  const context = useContext(ExamContext);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -54,6 +57,12 @@ const Timer = ({ startingSeconds, startImmediately, timesUp }: TimerProps) => {
           colorScheme="red"
           onClick={() => setClocksTicking(false)}
           isDisabled={!clocksTicking}
+        >
+          Pause
+        </Button>
+        <Button
+          colorScheme="red"
+          onClick={() => context.setTestInProgress(false)}
         >
           Stop
         </Button>

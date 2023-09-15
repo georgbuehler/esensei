@@ -7,6 +7,7 @@ import Exam from "./components/Exam";
 import ExamComplete from "./components/ExamComplete";
 import Settings from "./assets/Settings";
 import CreditsLink from "./components/CreditsLink";
+import ExamContext from "./contexts/examContext";
 
 function App() {
   const [testInProgress, setTestInProgress] = useState(false);
@@ -35,7 +36,14 @@ function App() {
   };
 
   return (
-    <>
+    <ExamContext.Provider
+      value={{
+        testInProgress,
+        setTestInProgress,
+        testComplete,
+        setTestComplete,
+      }}
+    >
       <ExamControls
         currentLevel={testLevel}
         currentIncludeLower={includeLower}
@@ -66,7 +74,7 @@ function App() {
       />
 
       <CreditsLink isVisible={!testInProgress} />
-    </>
+    </ExamContext.Provider>
   );
 }
 
