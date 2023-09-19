@@ -10,9 +10,9 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  FormControl,
-  FormLabel,
   Heading,
+  Text,
+  Box,
 } from "@chakra-ui/react";
 import levels from "../assets/Levels";
 
@@ -36,7 +36,6 @@ const ExamControls = ({
   updateIncludeLower,
   updateTimerInterval,
   startTest,
-  stopTest,
   testInProgress,
 }: ExamControlProps) => {
   if (testInProgress) return null;
@@ -48,6 +47,7 @@ const ExamControls = ({
         Aikido Test Simulator
       </Heading>
       <Select
+        id="Level"
         placeholder="Select Test Level"
         onChange={(event) => updateLevel(parseInt(event.target.value))}
         value={currentLevel}
@@ -60,20 +60,23 @@ const ExamControls = ({
         ))}
       </Select>
       <Checkbox
+        id="IncludeLower"
         checked={currentIncludeLower}
         onChange={(event) => updateIncludeLower(event.target.checked)}
         isDisabled={testInProgress}
       >
         Include Lower Level Techniques
       </Checkbox>
-      <FormControl isDisabled={testInProgress}>
-        <FormLabel>Seconds per Technique</FormLabel>
+
+      <Flex align="center">
         <NumberInput
+          id="TimeInterval"
           defaultValue={currentTimerInterval}
           min={15}
           max={300}
           step={5}
           onChange={updateTimerInterval}
+          width="75px"
         >
           <NumberInputField />
           <NumberInputStepper>
@@ -81,7 +84,11 @@ const ExamControls = ({
             <NumberDecrementStepper />
           </NumberInputStepper>
         </NumberInput>
-      </FormControl>
+        <Box ml={2}>
+          <Text display="inline">seconds per technique</Text>
+        </Box>
+      </Flex>
+
       <Flex justifyContent="center">
         <ButtonGroup alignItems={"center"}>
           <Button

@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Heading, IconButton } from "@chakra-ui/react";
+import { ButtonGroup, Heading, IconButton } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 import ExamContext from "../contexts/examContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
