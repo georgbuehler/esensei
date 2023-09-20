@@ -28,7 +28,6 @@ function App() {
     setCurrentTechnique((previous) => {
       if (previous == testTechniques.length - 1) {
         setTestComplete(true);
-        // setTestInProgress(false);
         return previous;
       }
       return previous + 1;
