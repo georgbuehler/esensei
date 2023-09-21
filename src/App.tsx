@@ -1,6 +1,6 @@
 import "./App.css";
 import ExamControls from "./components/ExamControls";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Technique } from "./assets/Techniques";
 import { getTechniques } from "./assets/Techniques";
 import Exam from "./components/Exam";
@@ -8,6 +8,7 @@ import ExamComplete from "./components/ExamComplete";
 import Settings from "./assets/Settings";
 import CreditsLink from "./components/CreditsLink";
 import ExamContext from "./contexts/examContext";
+import { useColorMode } from "@chakra-ui/color-mode";
 
 function App() {
   const [testInProgress, setTestInProgress] = useState(false);
@@ -17,6 +18,11 @@ function App() {
   const [testTechniques, setTestTechniques] = useState<Technique[]>([]);
   const [testComplete, setTestComplete] = useState(false);
   const [timerInterval, setTimerInterval] = useState(Settings.defaultSeconds);
+  const { colorMode, toggleColorMode } = useColorMode();
+
+  useEffect(() => {
+    if (colorMode == "light") toggleColorMode();
+  }, []);
 
   const startTest = () => {
     // Get filtered list of techniques
