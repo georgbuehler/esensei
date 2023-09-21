@@ -23,7 +23,7 @@ steps:
 - task: FtpUpload@2
   inputs:
     credentialsOption: 'inputs'
-    serverUrl: 'ftp.georgbuehler.com'
+    serverUrl: 'ftp://ftp.georgbuehler.com'
     username: '$(ftpUsername)'
     password: '$(ftpPassword)'
     rootDirectory: '$(Build.SourcesDirectory)/dist'
