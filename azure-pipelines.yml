@@ -24,9 +24,9 @@ steps:
   inputs:
     credentialsOption: 'inputs'
     serverUrl: 'ftp.georgbuehler.com'
-    username: 'esensei@georgbuehler.com'
-    password: 'D0m0Arigat0!'
-    rootDirectory: '$(Build.SourcesDirectory)/build'
+    username: '$(ftpUsername)'
+    password: '$(ftpPassword)'
+    rootDirectory: '$(Build.SourcesDirectory)/dist'
     filePatterns: '**'
     remoteDirectory: '/'
     clean: false
