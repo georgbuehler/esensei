@@ -33,3 +33,4 @@ steps:
     cleanContents: true
     preservePaths: false
     trustSSL: true
+  displayName: FTP Upload to esensei.georgbuehler.com
