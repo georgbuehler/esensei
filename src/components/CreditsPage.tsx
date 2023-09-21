@@ -6,7 +6,7 @@ import { ListItem, UnorderedList } from "@chakra-ui/react";
 
 const CreditsPage = () => {
   return (
-    <Stack spacing={3} justify="center">
+    <Stack spacing={3} justify="center" alignItems="center">
       <Heading>eSensei</Heading>
       <Heading size="md" m={2}>
         Aikido Test Simulator
@@ -30,7 +30,12 @@ const CreditsPage = () => {
         <i>lots</i> of practice tests. <FontAwesomeIcon icon={faHeart} />
       </Text>
 
-      <UnorderedList listStylePosition="inside" textAlign="left" maxWidth="90%">
+      <UnorderedList
+        listStylePosition="inside"
+        textAlign="left"
+        maxWidth="content-max"
+        mx="auto"
+      >
         <ListItem>
           <ChakraLink
             href="https://en.wikipedia.org/wiki/File:Enso.svg"
