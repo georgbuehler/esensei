@@ -8,6 +8,7 @@ const AboutPage = () => {
       <Heading size="md" m={2}>
         Aikido Test Simulator
       </Heading>
+      <Text fontSize="xs">Version {import.meta.env.VITE_APP_VERSION}</Text>
       <Text>
         This simulator is based on the kyu and dan{" "}
         <ChakraLink
