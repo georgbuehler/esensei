@@ -31,6 +31,6 @@ steps:
     remoteDirectory: '/'
     clean: false
     cleanContents: true
-    preservePaths: false
+    preservePaths: true
     trustSSL: true
   displayName: FTP Upload to esensei.georgbuehler.com
