@@ -13,8 +13,10 @@ import {
   Heading,
   Text,
   Box,
+  Image,
 } from "@chakra-ui/react";
 import levels from "../assets/Levels";
+import AppHeader from "./AppHeader";
 
 interface ExamControlProps {
   currentLevel: number | undefined;
@@ -42,10 +44,7 @@ const ExamControls = ({
 
   return (
     <Stack spacing={3} justify="center">
-      <Heading>eSensei</Heading>
-      <Heading size="md" m={2}>
-        Aikido Test Simulator
-      </Heading>
+      <AppHeader />
       <Select
         id="Level"
         placeholder="Select Test Level"

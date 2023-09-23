@@ -1,13 +1,11 @@
 import { Stack, Heading, Text, Link as ChakraLink } from "@chakra-ui/layout";
 import { Link as ReactRouterLink } from "react-router-dom";
+import AppHeader from "./AppHeader";
 
 const AboutPage = () => {
   return (
-    <Stack spacing={3} justify="center">
-      <Heading>eSensei</Heading>
-      <Heading size="md" m={2}>
-        Aikido Test Simulator
-      </Heading>
+    <Stack spacing={3} justify="center" alignItems="center">
+      <AppHeader />
       <Text fontSize="xs">Version {import.meta.env.VITE_APP_VERSION}</Text>
       <Text>
         This simulator is based on the kyu and dan{" "}
