@@ -3,14 +3,12 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { ListItem, UnorderedList } from "@chakra-ui/react";
+import AppHeader from "./AppHeader";
 
 const CreditsPage = () => {
   return (
     <Stack spacing={3} justify="center" alignItems="center">
-      <Heading>eSensei</Heading>
-      <Heading size="md" m={2}>
-        Aikido Test Simulator
-      </Heading>
+      <AppHeader />
 
       <Heading size="sm" m={2}>
         by Georg Buehler

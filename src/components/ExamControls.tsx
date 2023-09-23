@@ -16,6 +16,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import levels from "../assets/Levels";
+import AppHeader from "./AppHeader";
 
 interface ExamControlProps {
   currentLevel: number | undefined;
@@ -43,20 +44,7 @@ const ExamControls = ({
 
   return (
     <Stack spacing={3} justify="center">
-      <Flex align="center">
-        <Image
-          src="/Enso_white.svg"
-          alt="Enso"
-          boxSize="50px"
-          objectFit="cover"
-          mr="4"
-          ml="5"
-        />
-        <Heading>eSensei</Heading>
-      </Flex>
-      <Heading size="md" m={2}>
-        Aikido Test Simulator
-      </Heading>
+      <AppHeader />
       <Select
         id="Level"
         placeholder="Select Test Level"
