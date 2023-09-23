@@ -1,0 +1,52 @@
+import { create } from "zustand";
+import { devtools, persist } from "zustand/middleware";
+import { Technique } from "../assets/Techniques";
+
+interface eSenseiState {
+  testInProgress: boolean;
+  setTestInProgress: (inProgress: boolean) => void;
+  testLevel: number | undefined;
+  setTestLevel: (level: number) => void;
+  includeLower: boolean;
+  setIncludeLower: (includeLower: boolean) => void;
+  currentTechnique: number;
+  setCurrentTechnique: (technique: number) => void;
+  testTechniques: Technique[];
+  setTestTechniques: (techniques: Technique[]) => void;
+  testComplete: boolean;
+  setTestComplete: (testComplete: boolean) => void;
+  timerInterval: number;
+  setTimerInterval: (interval: number) => void;
+}
+
+const useESenseiStore = create<eSenseiState>()(
+  devtools(
+    persist(
+      (set) => ({
+        testInProgress: false,
+        setTestInProgress: (inProgress) =>
+          set((state) => ({ testInProgress: inProgress })),
+        testLevel: undefined,
+        setTestLevel: (level) => set((state) => ({ testLevel: level })),
+        includeLower: false,
+        setIncludeLower: (includeLower) =>
+          set((state) => ({ includeLower: includeLower })),
+        currentTechnique: 0,
+        setCurrentTechnique: (currentTechnique) =>
+          set((state) => ({ currentTechnique: currentTechnique })),
+        testTechniques: [] as Technique[],
+        setTestTechniques: (techniques) =>
+          set((state) => ({ testTechniques: techniques })),
+        testComplete: false,
+        setTestComplete: (testComplete) =>
+          set((state) => ({ testComplete: testComplete })),
+        timerInterval: 60,
+        setTimerInterval: (interval) =>
+          set((state) => ({ timerInterval: interval })),
+      }),
+      { name: "eSensei-storage" }
+    )
+  )
+);
+
+export default useESenseiStore;
