@@ -10,10 +10,8 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  Heading,
   Text,
   Box,
-  Image,
 } from "@chakra-ui/react";
 import levels from "../assets/Levels";
 import AppHeader from "./AppHeader";

@@ -1,4 +1,4 @@
-import { Stack, Heading, Text, Link as ChakraLink } from "@chakra-ui/layout";
+import { Stack, Text, Link as ChakraLink } from "@chakra-ui/layout";
 import { Link as ReactRouterLink } from "react-router-dom";
 import AppHeader from "./AppHeader";
 
