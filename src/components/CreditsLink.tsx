@@ -1,12 +1,11 @@
 import { Heading, Link as ChakraLink } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
+import useESenseiStore from "../statemanagement/eSenseiStore";
 
-interface CreditLinksProps {
-  isVisible: boolean;
-}
+const CreditsLink = () => {
+  const { testInProgress } = useESenseiStore();
 
-const CreditsLink = ({ isVisible }: CreditLinksProps) => {
-  if (!isVisible) return null;
+  if (testInProgress) return null;
 
   return (
     <>

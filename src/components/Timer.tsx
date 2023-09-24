@@ -1,6 +1,5 @@
 import { ButtonGroup, Heading, IconButton } from "@chakra-ui/react";
-import { useContext, useEffect, useState } from "react";
-import ExamContext from "../contexts/examContext";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -14,13 +13,17 @@ interface TimerProps {
   startingSeconds: number;
   startImmediately: boolean;
   timesUp: () => void;
+  stopTest: () => void;
 }
 
-const Timer = ({ startingSeconds, startImmediately, timesUp }: TimerProps) => {
+const Timer = ({
+  startingSeconds,
+  startImmediately,
+  timesUp,
+  stopTest,
+}: TimerProps) => {
   const [timeRemaining, setTimeRemaining] = useState(startingSeconds);
   const [clocksTicking, setClocksTicking] = useState(startImmediately);
-
-  const context = useContext(ExamContext);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -71,7 +74,7 @@ const Timer = ({ startingSeconds, startImmediately, timesUp }: TimerProps) => {
         <IconButton
           aria-label="Stop"
           colorScheme="red"
-          onClick={() => context.setTestInProgress(false)}
+          onClick={stopTest}
           icon={<FontAwesomeIcon icon={faStop} />}
         />
         <IconButton

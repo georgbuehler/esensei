@@ -1,52 +1,48 @@
 import { Heading, Stack } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 import { Howl } from "howler";
+import useESenseiStore from "../statemanagement/eSenseiStore";
+import Settings from "../assets/Settings";
 
-interface TechniqueProps {
-  modeName: string;
-  modeAudioURL: string;
-  attackName: string;
-  attackAudioURL: string;
-  defenseName: string;
-  defenseAudioURL: string;
-}
+const TestTechnique = () => {
+  const { testTechniques, currentTechnique } = useESenseiStore();
 
-const TestTechnique = ({
-  modeName,
-  modeAudioURL,
-  attackName,
-  attackAudioURL,
-  defenseName,
-  defenseAudioURL,
-}: TechniqueProps) => {
+  const {
+    Mode,
+    ModeAudioURL,
+    Attack,
+    AttackAudioURL,
+    Defense,
+    DefenseAudioURL,
+  } = testTechniques[currentTechnique];
+
   const currentMode = useRef("");
 
   const DefenseSound = new Howl({
-    src: defenseAudioURL,
+    src: Settings.audioPath + DefenseAudioURL,
   });
 
   const AttackSound = new Howl({
-    src: attackAudioURL,
+    src: Settings.audioPath + AttackAudioURL,
     onend: () => DefenseSound.play(),
   });
 
   const ModeSound = new Howl({
-    src: modeAudioURL,
+    src: Settings.audioPath + ModeAudioURL,
     onend: () => AttackSound.play(),
   });
 
   useEffect(() => {
-    console.log("Effect fired!");
-    if (modeName != currentMode.current) {
+    if (Mode != currentMode.current) {
       ModeSound.play();
-      currentMode.current = modeName;
+      currentMode.current = Mode;
     } else AttackSound.play();
   }, [DefenseSound, AttackSound, ModeSound]);
 
   return (
     <Stack spacing="2" margin="4">
-      <Heading size="md">{modeName}</Heading>
-      <Heading>{`${attackName} ${defenseName}`}</Heading>
+      <Heading size="md">{Mode}</Heading>
+      <Heading>{`${Attack} ${Defense}`}</Heading>
     </Stack>
   );
 };

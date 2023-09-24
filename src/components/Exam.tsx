@@ -1,41 +1,26 @@
-import { Technique } from "../assets/Techniques";
 import TestTechnique from "./TestTechnique";
 import Timer from "./Timer";
-import Settings from "../assets/Settings";
+import useESenseiStore from "../statemanagement/eSenseiStore";
 
-interface ExamProps {
-  technique: Technique;
-  timerInterval: number;
-  timesUp: () => void;
-  isVisible: boolean;
-}
-
-const Exam = ({ technique, timerInterval, timesUp, isVisible }: ExamProps) => {
-  if (!isVisible) return null;
-
+const Exam = () => {
   const {
-    Mode,
-    ModeAudioURL,
-    Attack,
-    AttackAudioURL,
-    Defense,
-    DefenseAudioURL,
-  } = technique;
+    timerInterval,
+    testInProgress,
+    testComplete,
+    nextTechnique,
+    stopTest,
+  } = useESenseiStore();
+
+  if (!testInProgress || testComplete) return null;
 
   return (
     <>
-      <TestTechnique
-        modeName={Mode}
-        modeAudioURL={Settings.audioPath + ModeAudioURL}
-        attackName={Attack}
-        attackAudioURL={Settings.audioPath + AttackAudioURL}
-        defenseName={Defense}
-        defenseAudioURL={Settings.audioPath + DefenseAudioURL}
-      />
+      <TestTechnique />
       <Timer
         startingSeconds={timerInterval}
         startImmediately={true}
-        timesUp={timesUp}
+        timesUp={nextTechnique}
+        stopTest={stopTest}
       />
     </>
   );

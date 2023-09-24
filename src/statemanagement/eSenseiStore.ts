@@ -16,8 +16,10 @@ export interface eSenseiState {
   testComplete: boolean;
   setTestComplete: (testComplete: boolean) => void;
   timerInterval: number;
-  setTimerInterval: (interval: number) => void;
+  setTimerInterval: (intervalAsString: string, interval: number) => void;
   startTest: () => void;
+  stopTest: () => void;
+  clearTestComplete: () => void;
   nextTechnique: () => void;
 }
 
@@ -39,12 +41,15 @@ const useESenseiStore = create<eSenseiState>()(
         testComplete: false,
         setTestComplete: (testComplete) => set({ testComplete: testComplete }),
         timerInterval: 60,
-        setTimerInterval: (interval) => set({ timerInterval: interval }),
+        setTimerInterval: (_, interval) => set({ timerInterval: interval }),
         startTest: () =>
           set((state) => ({
             testTechniques: getTechniques(state.testLevel, state.includeLower),
             testInProgress: true,
           })),
+        stopTest: () => set({ testInProgress: false }),
+        clearTestComplete: () =>
+          set({ testInProgress: false, testComplete: false }),
         nextTechnique: () =>
           set((state) => {
             if (state.currentTechnique == state.testTechniques.length - 1)

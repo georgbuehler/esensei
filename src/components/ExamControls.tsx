@@ -15,29 +15,20 @@ import {
 } from "@chakra-ui/react";
 import levels from "../assets/Levels";
 import AppHeader from "./AppHeader";
+import useESenseiStore from "../statemanagement/eSenseiStore";
 
-interface ExamControlProps {
-  currentLevel: number | undefined;
-  currentIncludeLower: boolean;
-  currentTimerInterval: number;
-  updateLevel: (level: number) => void;
-  updateIncludeLower: (include: boolean) => void;
-  updateTimerInterval: (value: string, seconds: number) => void;
-  startTest: () => void;
-  stopTest: () => void;
-  testInProgress: boolean;
-}
+const ExamControls = () => {
+  const {
+    testInProgress,
+    testLevel,
+    setTestLevel,
+    includeLower,
+    setIncludeLower,
+    timerInterval,
+    setTimerInterval,
+    startTest,
+  } = useESenseiStore();
 
-const ExamControls = ({
-  currentLevel,
-  currentIncludeLower,
-  currentTimerInterval,
-  updateLevel,
-  updateIncludeLower,
-  updateTimerInterval,
-  startTest,
-  testInProgress,
-}: ExamControlProps) => {
   if (testInProgress) return null;
 
   return (
@@ -46,8 +37,8 @@ const ExamControls = ({
       <Select
         id="Level"
         placeholder="Select Test Level"
-        onChange={(event) => updateLevel(parseInt(event.target.value))}
-        value={currentLevel}
+        onChange={(event) => setTestLevel(parseInt(event.target.value))}
+        value={testLevel}
         isDisabled={testInProgress}
       >
         {levels.map((level) => (
@@ -58,8 +49,8 @@ const ExamControls = ({
       </Select>
       <Checkbox
         id="IncludeLower"
-        checked={currentIncludeLower}
-        onChange={(event) => updateIncludeLower(event.target.checked)}
+        checked={includeLower}
+        onChange={(event) => setIncludeLower(event.target.checked)}
         isDisabled={testInProgress}
       >
         Include Lower Level Techniques
@@ -68,11 +59,11 @@ const ExamControls = ({
       <Flex align="center">
         <NumberInput
           id="TimeInterval"
-          defaultValue={currentTimerInterval}
+          defaultValue={timerInterval}
           min={15}
           max={300}
           step={5}
-          onChange={updateTimerInterval}
+          onChange={setTimerInterval}
           width="75px"
         >
           <NumberInputField />
