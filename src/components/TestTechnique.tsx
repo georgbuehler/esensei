@@ -3,9 +3,16 @@ import { useEffect, useRef } from "react";
 import { Howl } from "howler";
 import useESenseiStore from "../statemanagement/eSenseiStore";
 import Settings from "../assets/Settings";
+import { shallow } from "zustand/shallow";
 
 const TestTechnique = () => {
-  const { testTechniques, currentTechnique } = useESenseiStore();
+  const { testTechniques, currentTechnique } = useESenseiStore(
+    (state) => ({
+      testTechniques: state.testTechniques,
+      currentTechnique: state.currentTechnique,
+    }),
+    shallow
+  );
 
   const {
     Mode,

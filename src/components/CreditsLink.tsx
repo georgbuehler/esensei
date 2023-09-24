@@ -1,9 +1,13 @@
 import { Heading, Link as ChakraLink } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import useESenseiStore from "../statemanagement/eSenseiStore";
+import { shallow } from "zustand/shallow";
 
 const CreditsLink = () => {
-  const { testInProgress } = useESenseiStore();
+  const { testInProgress } = useESenseiStore(
+    (state) => ({ testInProgress: state.testInProgress }),
+    shallow
+  );
 
   if (testInProgress) return null;
 

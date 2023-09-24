@@ -16,6 +16,7 @@ import {
 import levels from "../assets/Levels";
 import AppHeader from "./AppHeader";
 import useESenseiStore from "../statemanagement/eSenseiStore";
+import { shallow } from "zustand/shallow";
 
 const ExamControls = () => {
   const {
@@ -27,7 +28,19 @@ const ExamControls = () => {
     timerInterval,
     setTimerInterval,
     startTest,
-  } = useESenseiStore();
+  } = useESenseiStore(
+    (state) => ({
+      testInProgress: state.testInProgress,
+      testLevel: state.testLevel,
+      setTestLevel: state.setTestLevel,
+      includeLower: state.includeLower,
+      setIncludeLower: state.setIncludeLower,
+      timerInterval: state.timerInterval,
+      setTimerInterval: state.setTimerInterval,
+      startTest: state.startTest,
+    }),
+    shallow
+  );
 
   if (testInProgress) return null;
 

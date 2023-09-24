@@ -1,6 +1,7 @@
 import TestTechnique from "./TestTechnique";
 import Timer from "./Timer";
 import useESenseiStore from "../statemanagement/eSenseiStore";
+import { shallow } from "zustand/shallow";
 
 const Exam = () => {
   const {
@@ -9,7 +10,16 @@ const Exam = () => {
     testComplete,
     nextTechnique,
     stopTest,
-  } = useESenseiStore();
+  } = useESenseiStore(
+    (state) => ({
+      timerInterval: state.timerInterval,
+      testInProgress: state.testInProgress,
+      testComplete: state.testComplete,
+      nextTechnique: state.nextTechnique,
+      stopTest: state.stopTest,
+    }),
+    shallow
+  );
 
   if (!testInProgress || testComplete) return null;
 

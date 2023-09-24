@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { createWithEqualityFn } from "zustand/traditional";
 import { devtools, persist } from "zustand/middleware";
 import { Technique, getTechniques } from "../assets/Techniques";
 
@@ -23,7 +23,7 @@ export interface eSenseiState {
   nextTechnique: () => void;
 }
 
-const useESenseiStore = create<eSenseiState>()(
+const useESenseiStore = createWithEqualityFn<eSenseiState>()(
   devtools(
     persist(
       (set) => ({
@@ -60,7 +60,8 @@ const useESenseiStore = create<eSenseiState>()(
 
       { name: "eSensei-storage" }
     )
-  )
+  ),
+  Object.is
 );
 
 export default useESenseiStore;
