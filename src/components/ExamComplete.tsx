@@ -1,17 +1,22 @@
 import { Heading, Stack, Button } from "@chakra-ui/react";
+import useESenseiStore from "../statemanagement/eSenseiStore";
+import { shallow } from "zustand/shallow";
 
-interface ExamCompleteProps {
-  clearMessage: () => void;
-  isVisible: boolean;
-}
+const ExamComplete = () => {
+  const { testComplete, clearTestComplete } = useESenseiStore(
+    (state) => ({
+      testComplete: state.testComplete,
+      clearTestComplete: state.clearTestComplete,
+    }),
+    shallow
+  );
 
-const ExamComplete = ({ clearMessage, isVisible }: ExamCompleteProps) => {
-  if (!isVisible) return null;
+  if (!testComplete) return null;
 
   return (
     <Stack>
       <Heading>Exam Complete!</Heading>
-      <Button colorScheme="green" onClick={clearMessage}>
+      <Button colorScheme="green" onClick={clearTestComplete}>
         OK
       </Button>
     </Stack>
