@@ -2,9 +2,9 @@ import React from "react";
 
 interface ExamContextType {
   testInProgress: Boolean;
-  setTestInProgress: React.Dispatch<React.SetStateAction<boolean>>;
+  setTestInProgress: (inProgress: boolean) => void;
   testComplete: Boolean;
-  setTestComplete: React.Dispatch<React.SetStateAction<boolean>>;
+  setTestComplete: (testComplete: boolean) => void;
 }
 
 const ExamContext = React.createContext<ExamContextType>({} as ExamContextType);
