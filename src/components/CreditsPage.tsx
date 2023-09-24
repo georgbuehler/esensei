@@ -62,6 +62,12 @@ const CreditsPage = () => {
             Howler
           </ChakraLink>
         </ListItem>
+        <ListItem>
+          State management by{" "}
+          <ChakraLink href="https://github.com/pmndrs/zustand" target="_blank">
+            Zustand
+          </ChakraLink>
+        </ListItem>
       </UnorderedList>
 
       <ChakraLink as={ReactRouterLink} to="/">
