@@ -23,10 +23,12 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
+    "simple-zustand-devtools": "^1.1.0",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@types/howler": "^2.2.8",
+    "@types/node": "^20.8.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
