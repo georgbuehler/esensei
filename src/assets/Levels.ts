@@ -12,7 +12,6 @@ const levels = [
   { Id: 1, Name: "Ikkyu", EnglishTranslation: "First Kyu" },
   { Id: 0, Name: "Shodan", EnglishTranslation: "First Dan" },
   { Id: -1, Name: "Nidan", EnglishTranslation: "Second Dan" },
-  { Id: -2, Name: "Sandan", EnglishTranslation: "Third Dan" },
 ];
 
 export default levels;
