@@ -1,6 +1,7 @@
 import { createWithEqualityFn } from "zustand/traditional";
 import { devtools, persist } from "zustand/middleware";
 import { Technique, getTechniques } from "../assets/Techniques";
+import { mountStoreDevtool } from "simple-zustand-devtools";
 
 export interface eSenseiState {
   testInProgress: boolean;
@@ -46,8 +47,9 @@ const useESenseiStore = createWithEqualityFn<eSenseiState>()(
           set((state) => ({
             testTechniques: getTechniques(state.testLevel, state.includeLower),
             testInProgress: true,
+            currentTechnique: 0,
           })),
-        stopTest: () => set({ testInProgress: false }),
+        stopTest: () => set({ testInProgress: false, currentTechnique: 0 }),
         clearTestComplete: () =>
           set({ testInProgress: false, testComplete: false }),
         nextTechnique: () =>
@@ -63,5 +65,8 @@ const useESenseiStore = createWithEqualityFn<eSenseiState>()(
   ),
   Object.is
 );
+
+if (process.env.NODE_ENV === "development")
+  mountStoreDevtool("eSenseiStore", useESenseiStore);
 
 export default useESenseiStore;
