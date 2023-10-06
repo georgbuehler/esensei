@@ -1,6 +1,11 @@
 # eSensei
 
 **eSensei** is a mobile-friendly, web-based aikido test simulator that will call out techniques to be performed at regular intervals.
+
+![eSensei Options](http://esensei.georgbuehler.com/eSensei_Controls.png)
+
+![eSensei Test](http://esensei.georgbuehler.com/eSensei_Test.png)
+
 eSensei is available FREE for all to use at [esensei.georgbuehler.com](http://esensei.georgbuehler.com).
 
 The techniques presented are according the official [United States Aikido Federation](https://www.usaikifed.com/) (USAF) [test requirements](http://www.aikido-yamada.eu/wp-content/uploads/USAF.2018.test_.req_._FINAL.pdf).
@@ -26,14 +31,14 @@ This ordering of modes is not mandated by the test requirements, but tends to be
 
 ## License
 
-eSensei source code is licensed under the MIT License. See the LICENSE.txt file for the full license agreement.
-I encourage any and all dojos to use it an extend it as they like -- I created it as a service to the art.
+eSensei source code is licensed under the **MIT License**. See the LICENSE.txt file for the full license agreement.
+I encourage any and all dojos to use it and/or extend it as they like -- I created it as a service to the art.
 
 ## Technical Details
 
 eSensei is a React+TypeScript web application implemented with the [Vite](https://vitejs.dev/) front-end tooling. UI components are taken from [Chakra UI](https://chakra-ui.com/) Application icons are from [Font Awesome](https://fontawesome.com/). State variable are managed with [Zustand](https://github.com/pmndrs/zustand). Audio playback is supported with [Howler](https://howlerjs.com/).
 
-The technique data for the application is distributed in the Techniques.ts file, primarily as JSON, so that it could easily run on any website. However, the data structure was originally designed in a [SQLite](https://www.sqlite.org/index.html) database, which is included in the project. If you feel the need to correct or extend the data, it would be easiest to do it in the SQLite database and then re-extract the desired JSON from there.
+The technique data for the application is distributed in the Techniques.ts file, primarily as JSON, so that it could easily run on any website. However, the data structure was originally designed in a [SQLite](https://www.sqlite.org/index.html) database, which is included in the project. If you feel the need to correct or extend the data, it would be easiest to do it in the "eSensei.db" SQLite database and then re-extract the desired JSON from there.
 
 Audio recordings were made using [Audacity](https://www.audacityteam.org/). If you'd like to post your own version of eSensei with the voice of your own sensei, you could easily do so by just replacing the MP3 files in the project with your own.
 
