@@ -2,11 +2,11 @@
 
 **eSensei** is a mobile-friendly, web-based aikido test simulator that will call out techniques to be performed at regular intervals.
 
-![eSensei Options](http://esensei.georgbuehler.com/eSensei_Controls.png)
-
-![eSensei Test](http://esensei.georgbuehler.com/eSensei_Test.png)
-
 eSensei is available FREE for all to use at [esensei.georgbuehler.com](http://esensei.georgbuehler.com).
+
+![eSensei Options](/public/eSensei_Controls.png)
+
+![eSensei Test](/public/eSensei_Test.png)
 
 The techniques presented are according the official [United States Aikido Federation](https://www.usaikifed.com/) (USAF) [test requirements](http://www.aikido-yamada.eu/wp-content/uploads/USAF.2018.test_.req_._FINAL.pdf).
 Test requirements may vary between organizations and dojos, so check with your sensei about requirements before relying on this application for your test preparation. The application is intended mostly for kyu ranks -- people still learning the vocabulary -- though dan-level test requirements are also included for completeness.
@@ -36,7 +36,7 @@ I encourage any and all dojos to use it and/or extend it as they like -- I creat
 
 ## Technical Details
 
-eSensei is a React+TypeScript web application implemented with the [Vite](https://vitejs.dev/) front-end tooling. UI components are taken from [Chakra UI](https://chakra-ui.com/) Application icons are from [Font Awesome](https://fontawesome.com/). State variable are managed with [Zustand](https://github.com/pmndrs/zustand). Audio playback is supported with [Howler](https://howlerjs.com/).
+eSensei is a React+TypeScript web application implemented with the [Vite](https://vitejs.dev/) front-end tooling. UI components are taken from [Chakra UI](https://chakra-ui.com/). Application icons are from [Font Awesome](https://fontawesome.com/). State variable are managed with [Zustand](https://github.com/pmndrs/zustand). Audio playback is supported with [Howler](https://howlerjs.com/).
 
 The technique data for the application is distributed in the Techniques.ts file, primarily as JSON, so that it could easily run on any website. However, the data structure was originally designed in a [SQLite](https://www.sqlite.org/index.html) database, which is included in the project. If you feel the need to correct or extend the data, it would be easiest to do it in the "eSensei.db" SQLite database and then re-extract the desired JSON from there.
 
